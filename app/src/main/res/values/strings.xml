@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">CPDM</string>
+    <string name="content_description_EmailLogin">Email</string>
+    <string name="content_description_SenhaLogin">Senha</string>
+    <string name="contentAppLoginBackGround">contentAppLoginBackGround</string>
+    <string name="txtCadastrar">Cadastrar</string>
+
 </resources>

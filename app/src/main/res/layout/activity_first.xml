@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FBFBFB"
+    tools:context=".FirstActivity">
+
+    <Button
+        android:id="@+id/googleSignInEmailButton"
+        style="@style/Widget.MaterialComponents.Button.Icon"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="109dp"
+        android:background="#FFFFFF"
+        android:text="@string/txtCadastrar"
+        android:textColor="#FFFEFE"
+        android:textColorHint="#FFFFFF"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IdPasswordTxtLOGIN"></Button>
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:clickable="false"
+        android:contentDescription="@string/contentAppLoginBackGround"
+        android:scaleType="fitXY"
+        android:src="@drawable/wallpaperlogin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/googleSignInButton"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/googleSignInEmailButton">
+
+    </com.google.android.gms.common.SignInButton>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/IdEmailTxtLOGIN"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:hint="@string/content_description_EmailLogin"
+        app:counterEnabled="true"
+        app:counterMaxLength="50"
+        app:endIconMode="clear_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:startIconContentDescription="@string/content_description_EmailLogin"
+        app:startIconDrawable="@drawable/twotone_perm_identity_black_18dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+
+        android:id="@+id/IdPasswordTxtLOGIN"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="39dp"
+        android:hint="@string/content_description_SenhaLogin"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IdEmailTxtLOGIN"
+        app:startIconContentDescription="@string/content_description_SenhaLogin"
+        app:startIconDrawable="@drawable/twotone_vpn_key_black_18dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

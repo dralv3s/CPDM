@@ -1,8 +1,25 @@
 <resources>
     <string name="app_name">CPDM</string>
+    <string name="requestId">124496619936-ie3g2e4lr872niad1s6mvh62710v6gvt.apps.googleusercontent.com</string>
+    <string name="RC_SIGN_IN">9001</string>
+    <string name="UserSharedPrefs">UserSharedPrefs</string>
+    <string name="DisplayName">DisplayName</string>
+    <string name="IdTokenGoogle">IdTokenGoogle</string>
+    <string name="IdTokenFirebase">IdTokenFirebase</string>
+
     <string name="content_description_EmailLogin">Email</string>
     <string name="content_description_SenhaLogin">Senha</string>
     <string name="contentAppLoginBackGround">contentAppLoginBackGround</string>
     <string name="txtCadastrar">Cadastrar</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+
 
 </resources>

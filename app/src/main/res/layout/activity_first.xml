@@ -7,23 +7,8 @@
     android:background="#FBFBFB"
     tools:context=".Activity.FirstActivity">
 
-    <Button
-        android:id="@+id/googleSignInEmailButton"
-        style="@style/Widget.MaterialComponents.Button.Icon"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="109dp"
-        android:background="#FFFFFF"
-        android:text="@string/txtCadastrar"
-        android:textColor="#FFFEFE"
-        android:textColorHint="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IdPasswordTxtLOGIN"></Button>
-
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/BackGroundIMG"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:adjustViewBounds="true"
@@ -36,60 +21,123 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.gms.common.SignInButton
-        android:id="@+id/googleSignInButton"
-        android:layout_width="250dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="56dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/googleSignInEmailButton">
-
-    </com.google.android.gms.common.SignInButton>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/IdEmailTxtLOGIN"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:hint="@string/content_description_EmailLogin"
-        app:counterEnabled="true"
-        app:counterMaxLength="50"
-        app:endIconMode="clear_text"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/CardDefaultMargin"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        app:cardBackgroundColor="@color/ContainerBackground_default"
+        app:cardCornerRadius="@dimen/CardCornerDefaultRadius"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:startIconContentDescription="@string/content_description_EmailLogin"
-        app:startIconDrawable="@drawable/twotone_perm_identity_black_18dp">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </com.google.android.material.textfield.TextInputLayout>
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF">
 
-    <com.google.android.material.textfield.TextInputLayout
 
-        android:id="@+id/IdPasswordTxtLOGIN"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="39dp"
-        android:hint="@string/content_description_SenhaLogin"
-        app:counterEnabled="true"
-        app:counterMaxLength="30"
-        app:endIconMode="password_toggle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IdEmailTxtLOGIN"
-        app:startIconContentDescription="@string/content_description_SenhaLogin"
-        app:startIconDrawable="@drawable/twotone_vpn_key_black_18dp">
+            <ImageView
+                android:id="@+id/LogoApp"
+                android:layout_width="120dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="31dp"
+                android:contentDescription="@string/LogoIMG"
+                app:layout_constraintBottom_toTopOf="@+id/IdEmailTxtLOGIN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/darkgrid" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword" />
+            <Button
+                android:id="@+id/googleSignInEmailButton"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="53dp"
+                android:background="#FFFFFF"
+                android:text="@string/txtCadastrar"
+                android:textColor="#FFFEFE"
+                android:textColorHint="#FFFFFF"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toTopOf="@+id/googleSignInButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/IdPasswordTxtLOGIN"></Button>
 
-    </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.gms.common.SignInButton
+                android:id="@+id/googleSignInButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginEnd="50dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginBottom="102dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/googleSignInEmailButton">
+
+            </com.google.android.gms.common.SignInButton>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/IdEmailTxtLOGIN"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:hint="@string/content_description_EmailLogin"
+                android:padding="20dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="50"
+                app:endIconMode="clear_text"
+                app:layout_constraintBottom_toTopOf="@+id/IdPasswordTxtLOGIN"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/LogoApp"
+                app:startIconContentDescription="@string/content_description_EmailLogin"
+                app:startIconDrawable="@drawable/twotone_perm_identity_black_18dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:id="@+id/IdPasswordTxtLOGIN"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="49dp"
+                android:hint="@string/content_description_SenhaLogin"
+                android:padding="20dp"
+                app:counterEnabled="true"
+                app:counterMaxLength="30"
+                app:endIconMode="password_toggle"
+                app:layout_constraintBottom_toTopOf="@+id/googleSignInEmailButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/IdEmailTxtLOGIN"
+                app:startIconContentDescription="@string/content_description_SenhaLogin"
+                app:startIconDrawable="@drawable/twotone_vpn_key_black_18dp">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

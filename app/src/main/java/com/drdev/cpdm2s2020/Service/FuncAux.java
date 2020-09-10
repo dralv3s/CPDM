@@ -47,4 +47,14 @@ public class FuncAux extends AppCompatActivity {
 
         editor.commit();
     }
+
+
+
+    public String GetUserPrefsString(Context context, String key, String value){
+
+        SharedPreferences sharedPref = context.getSharedPreferences(context.getResources().getString(R.string.UserSharedPrefs), context.MODE_PRIVATE);
+
+        return sharedPref.getString(key, value);
+    }
+
 }

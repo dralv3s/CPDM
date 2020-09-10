@@ -6,13 +6,166 @@
     android:layout_height="match_parent"
     tools:context=".Activity.HomeActivity">
 
-    <TextView
-        android:id="@+id/textView"
+    <ImageView
+        android:id="@+id/backGroundImgHome"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="339dp"
-        android:text="HOME"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:clickable="false"
+        android:contentDescription="@string/contentAppHomeBackGround"
+        android:scaleType="fitXY"
+        android:src="@drawable/wallpaperlogin"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/nightsky" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView10"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="30dp"
+        app:cardBackgroundColor="@color/ContainerBackground_default"
+        app:cardCornerRadius="@dimen/CardCornerDefaultRadius"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewVisualizar"
+                android:layout_width="@dimen/CardMenuDefaultDimension"
+                android:layout_height="@dimen/CardMenuDefaultDimension"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginTop="187dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="33dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintBottom_toTopOf="@+id/cardViewPerfil"
+                app:layout_constraintEnd_toStartOf="@+id/cardViewIncluir"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/imageViewVisualizar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/CardDefaultMargin"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/imageViewVisualizarContentDesc"
+                    android:scaleType="fitXY"
+                    tools:srcCompat="@drawable/darkgrid" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewSetup"
+                android:layout_width="@dimen/CardMenuDefaultDimension"
+                android:layout_height="@dimen/CardMenuDefaultDimension"
+                android:layout_marginEnd="61dp"
+                android:layout_marginRight="61dp"
+                android:layout_marginBottom="251dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:contentPadding="@dimen/CardMenuIconDefaultPadding"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardViewPerfil"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewIncluir">
+
+
+                <ImageView
+                    android:id="@+id/imageViewIncluirNovo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/imageViewIncluirNovoContentDescription"
+                    android:scaleType="fitXY"
+                    tools:srcCompat="@drawable/darkgrid" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewPerfil"
+                android:layout_width="@dimen/CardMenuDefaultDimension"
+                android:layout_height="@dimen/CardMenuDefaultDimension"
+                android:layout_marginStart="60dp"
+                android:layout_marginLeft="60dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="251dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:contentPadding="@dimen/CardMenuIconDefaultPadding"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/cardViewSetup"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/cardViewVisualizar">
+
+
+                <ImageView
+                    android:id="@+id/imageViewPerfil"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/imageViewPerfilContentDescription"
+                    android:scaleType="fitXY"
+                    tools:srcCompat="@drawable/darkgrid" />
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewIncluir"
+                android:layout_width="@dimen/CardMenuDefaultDimension"
+                android:layout_height="@dimen/CardMenuDefaultDimension"
+                android:layout_marginTop="187dp"
+                android:layout_marginEnd="61dp"
+                android:layout_marginRight="61dp"
+                android:layout_marginBottom="33dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:contentPadding="@dimen/CardMenuIconDefaultPadding"
+                app:layout_constraintBottom_toTopOf="@+id/cardViewSetup"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/cardViewVisualizar"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/imageViewConfig"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/imageViewConfigContentDescription"
+                    android:scaleType="fitXY"
+                    tools:srcCompat="@drawable/darkgrid" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textViewSairLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="34dp"
+                android:contentDescription="@string/SairTxtContentDescription"
+                android:text="@string/SairTxt"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

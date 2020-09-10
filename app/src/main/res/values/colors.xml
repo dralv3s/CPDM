@@ -3,4 +3,5 @@
     <color name="colorPrimary">#5679DF</color>
     <color name="colorPrimaryDark">#465991</color>
     <color name="colorAccent">#7C8D9C</color>
+    <color name="ContainerBackground_default">#B3C6D6EC</color>
 </resources>

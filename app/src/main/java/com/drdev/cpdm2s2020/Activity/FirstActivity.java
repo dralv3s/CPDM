@@ -27,6 +27,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
+import static java.lang.Integer.parseInt;
+
 public class FirstActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -91,6 +93,7 @@ public class FirstActivity extends AppCompatActivity {
 
     private void StartGoogleServices(){
 
+
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestProfile()
                 .requestId()
@@ -103,8 +106,8 @@ public class FirstActivity extends AppCompatActivity {
         GoogleSignInAccount currentUserGoogle = GoogleSignIn.getLastSignedInAccount(this);
 
         if (currentUserGoogle != null){
-            GoogleSignOut();
-            //startActivity(new Intent(FirstActivity.this, HomeActivity.class));
+            //GoogleSignOut();
+            startActivity(new Intent(FirstActivity.this, HomeActivity.class));
         }
     }
 
@@ -139,7 +142,13 @@ public class FirstActivity extends AppCompatActivity {
                 func.SaveUserPrefs(getApplicationContext(), getString(R.string.IdTokenGoogle), usuario.IdToken);
 
                 CreateFirebaseUserWithGoogle(account.getIdToken());
+            }else{
+                func.Toast(getApplicationContext(),"Não foi possivel recuperar os dados do usuario, verifique as permissoes do aplicativo e tente novamente.",0);
             }
+
+
+
+
         } catch (ApiException e) {
             func.Toast(getApplicationContext(),"Ocorreu um erro ao registrar o usuario, tente novamente mais tarde.",0);
         }
@@ -173,8 +182,8 @@ public class FirstActivity extends AppCompatActivity {
         FirebaseUser currentUserFB = mAuth.getCurrentUser();
 
         if (currentUserFB != null){
-            //startActivity(new Intent(FirstActivity.this, HomeActivity.class));
-            FirebaseAuth.getInstance().signOut();
+            startActivity(new Intent(FirstActivity.this, HomeActivity.class));
+            //FirebaseAuth.getInstance().signOut();
         }
     }
 

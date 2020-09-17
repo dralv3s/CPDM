@@ -30,6 +30,18 @@
     <string name="imageViewConfigContentDescription">imageViewConfig</string>
     <string name="SairTxt">SAIR</string>
     <string name="SairTxtContentDescription">SAIRTXT</string>
+    <string name="imageViewTarefaContentDescription">imageViewTarefa</string>
+    <string name="visRowImageViewContentDescription">visRowImageViewContentDescription</string>
+
+    <string name="content_description_TituloTarefa">Titulo</string>
+    <string name="content_description_AliasTarefa">Apelido</string>
+    <string name="content_description_DescricaoTarefa">Descrição</string>
+    <string name="content_description_Notificar">Notificar</string>
+    <string name="content_description_ValorNota">Valor da nota</string>
+    <string name="content_description_DataEntrega">Data de Entrega</string>
+    <string name="content_description_IconeTarefa">Icone</string>
+    <string name="content_description_Button_Salvar_Tarefa">SALVAR</string>
+    <string name="ButtonSalvarTarefaText">SALVAR</string>
 
 
 </resources>

@@ -3,8 +3,10 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="CardCornerDefaultRadius">160dp</dimen>
-    <dimen name="CardDefaultMargin" >30dp</dimen>
+    <dimen name="CardDefaultMargin" >20dp</dimen>
     <dimen name="ImageIconDefaaultSize">130dp</dimen>
     <dimen name="CardMenuIconDefaultPadding">30dp</dimen>
     <dimen name="CardMenuDefaultDimension">100dp</dimen>
+    <dimen name="RecyclerViewDefaultMargin">3dp</dimen>
+    <dimen name="RecyclewrViewDefaultPadding">20dp</dimen>
 </resources>

@@ -6,12 +6,18 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ExibirActivity">
 
-    <TextView
-        android:id="@+id/textView4"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/VisualizarRecyclerView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="339dp"
-        android:text="EXIBIR"
+        android:layout_height="0dp"
+        android:layout_margin="@dimen/RecyclerViewDefaultMargin"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginRight="14dp"
+        android:layout_marginBottom="14dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

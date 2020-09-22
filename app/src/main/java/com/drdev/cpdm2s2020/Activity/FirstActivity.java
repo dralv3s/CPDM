@@ -42,7 +42,7 @@ public class FirstActivity extends AppCompatActivity {
 
 
     private void Construtor(){
-        func = new FuncAux();
+        func = new FuncAux(FirstActivity.this);
         usuario = new UsuarioModel();
     }
 
@@ -138,19 +138,19 @@ public class FirstActivity extends AppCompatActivity {
                 usuario.DisplayName = account.getDisplayName();
                 usuario.IdToken = account.getIdToken();
 
-                func.SaveUserPrefs(getApplicationContext(), getString(R.string.DisplayName), usuario.DisplayName);
-                func.SaveUserPrefs(getApplicationContext(), getString(R.string.IdTokenGoogle), usuario.IdToken);
+                func.SaveUserPrefs(getString(R.string.DisplayName), usuario.DisplayName);
+                func.SaveUserPrefs(getString(R.string.IdTokenGoogle), usuario.IdToken);
 
                 CreateFirebaseUserWithGoogle(account.getIdToken());
             }else{
-                func.Toast(getApplicationContext(),"Não foi possivel recuperar os dados do usuario, verifique as permissoes do aplicativo e tente novamente.",0);
+                func.Toast("Não foi possivel recuperar os dados do usuario, verifique as permissoes do aplicativo e tente novamente.",0);
             }
 
 
 
 
         } catch (ApiException e) {
-            func.Toast(getApplicationContext(),"Ocorreu um erro ao registrar o usuario, tente novamente mais tarde.",0);
+            func.Toast("Ocorreu um erro ao registrar o usuario, tente novamente mais tarde.",0);
         }
     }
 
@@ -163,10 +163,10 @@ public class FirstActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = mAuth.getCurrentUser();
 
-                            func.SaveUserPrefs(getApplicationContext(), getString(R.string.IdTokenFirebase),user.getUid());
+                            func.SaveUserPrefs(getString(R.string.IdTokenFirebase),user.getUid());
                             startActivity(new Intent(FirstActivity.this, HomeActivity.class));
                         } else {
-                            func.Toast(getApplicationContext(),"Não foi possivel criar o usuario, tente novamente mais tarde.", 1 );
+                            func.Toast("Não foi possivel criar o usuario, tente novamente mais tarde.", 1 );
                         }
                     }
                 });
@@ -196,10 +196,10 @@ public class FirstActivity extends AppCompatActivity {
             if (!usuario.Senha.matches("")){
                 CreateFirebaseUserByEmail(usuario.Login, usuario.Senha);
             }else{
-                func.Toast(getApplicationContext(),"É necessario digitar uma senha para se cadastrar.", 0);
+                func.Toast("É necessario digitar uma senha para se cadastrar.", 0);
             }
         }else{
-            func.Toast(getApplicationContext(),"É necessario digitar um email para se cadastrar.",0);
+            func.Toast("É necessario digitar um email para se cadastrar.",0);
         }
     }
 
@@ -211,11 +211,11 @@ public class FirstActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()){
                             FirebaseUser user = task.getResult().getUser();
-                            func.SaveUserPrefs(getApplicationContext(), getString(R.string.IdTokenGoogle), user.getUid());
+                            func.SaveUserPrefs(getString(R.string.IdTokenGoogle), user.getUid());
                             startActivity(new Intent(FirstActivity.this, HomeActivity.class));
 
                         }else{
-                            func.Toast(getApplicationContext(),"Não foi possivel registrar o usuario, verifique a sua conexão e tente novamente.",0);
+                            func.Toast("Não foi possivel registrar o usuario, verifique a sua conexão e tente novamente.",0);
                         }
                     }
                 });

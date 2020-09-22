@@ -16,7 +16,7 @@ public class TarefaModel {
 
     public float ValorNota;
 
-    public Date DataEntrega;
+    public String DataEntrega;
 
     public int IconeTarefa;
 

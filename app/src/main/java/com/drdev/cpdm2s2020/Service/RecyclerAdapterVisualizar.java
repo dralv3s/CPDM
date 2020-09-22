@@ -21,10 +21,16 @@ public class RecyclerAdapterVisualizar extends RecyclerView.Adapter<RecyclerAdap
 
     Context context;
     ArrayList<TarefaModel> tarefasList;
+    private OnTarefaListener onTarefaListener;
 
-    public RecyclerAdapterVisualizar (Context _context, ArrayList<TarefaModel> _tarefasList){
+    public RecyclerAdapterVisualizar (
+            Context _context,
+            ArrayList<TarefaModel> _tarefasList,
+            OnTarefaListener _onTarefaListener)
+    {
         tarefasList = _tarefasList;
         context = _context;
+        onTarefaListener = _onTarefaListener;
     }
 
     @NonNull
@@ -34,7 +40,7 @@ public class RecyclerAdapterVisualizar extends RecyclerView.Adapter<RecyclerAdap
 
         View view = inflater.inflate(R.layout.visu_row, parent, false);
 
-        return new TarefaViewHolder(view);
+        return new TarefaViewHolder(view, onTarefaListener);
     }
 
     @Override
@@ -66,16 +72,32 @@ public class RecyclerAdapterVisualizar extends RecyclerView.Adapter<RecyclerAdap
         return tarefasList.size();
     }
 
-    public class TarefaViewHolder extends RecyclerView.ViewHolder{
+    public class TarefaViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView tarefaTitle, tarefaDesc;
         ImageView tarefaImage;
 
-        public TarefaViewHolder(@NonNull View itemView) {
+        OnTarefaListener onTarefaListener;
+
+        public TarefaViewHolder(@NonNull View itemView, OnTarefaListener onTarefaListener) {
             super(itemView);
             tarefaImage = itemView.findViewById(R.id.visRowImageView);
             tarefaTitle = itemView.findViewById(R.id.visRowTitle);
             tarefaDesc = itemView.findViewById(R.id.visRowDesc);
+
+            this.onTarefaListener = onTarefaListener;
+            itemView.setOnClickListener(this);
+
+
         }
+
+        @Override
+        public void onClick(View v) {
+            onTarefaListener.onTarefaClick(getAdapterPosition());
+        }
+    }
+
+    public interface OnTarefaListener{
+        void onTarefaClick(int position);
     }
 }

@@ -6,7 +6,7 @@
     <dimen name="CardDefaultMargin" >20dp</dimen>
     <dimen name="ImageIconDefaaultSize">130dp</dimen>
     <dimen name="CardMenuIconDefaultPadding">30dp</dimen>
-    <dimen name="CardMenuDefaultDimension">100dp</dimen>
+    <dimen name="CardMenuDefaultDimension">150dp</dimen>
     <dimen name="RecyclerViewDefaultMargin">3dp</dimen>
     <dimen name="RecyclewrViewDefaultPadding">20dp</dimen>
 </resources>

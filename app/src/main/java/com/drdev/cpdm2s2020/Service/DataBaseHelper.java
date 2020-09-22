@@ -5,10 +5,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import com.drdev.cpdm2s2020.Model.TarefaModel;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -61,7 +58,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_TITULO_TAREFA, model.TituloTarefa);
         cv.put(COLUMN_DESCRICAO_TAREFA, model.DescricaoTarefa);
         cv.put(COLUMN_ALIAS_TAREFA, model.AliasTarefa);
-        cv.put(COLUMN_DATA_ENTREGA, model.DataEntrega.toString());
+        cv.put(COLUMN_DATA_ENTREGA, model.DataEntrega);
         cv.put(COLUMN_NOTIFICAR, model.Notificar);
         cv.put(COLUMN_VALOR_NOTA, model.ValorNota);
         cv.put(COLUMN_ICONE_TAREFA, model.IconeTarefa);
@@ -95,14 +92,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
                 model.TituloTarefa = cursor.getString (1);
                 model.DescricaoTarefa = cursor.getString(2);
                 model.AliasTarefa = cursor.getString(3);
-
-                try {
-                    Date dateParse = new SimpleDateFormat("dd/MM/yyyy").parse(cursor.getString(4));
-                    model.DataEntrega = dateParse;
-                } catch (ParseException e) {
-                    model.DataEntrega = null;
-                }
-
+                model.DataEntrega = cursor.getString(4);
                 model.Notificar = cursor.getString(5);
                 model.ValorNota = cursor.getInt(6);
                 model.IconeTarefa = cursor.getInt(7);

@@ -20,7 +20,6 @@ import com.drdev.cpdm2s2020.Service.FuncAux;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -47,26 +46,20 @@ public class CriarActivity extends AppCompatActivity {
 
     private Button insertBT;
 
-    private Date dateParse;
-
     private String[] iconeArr;
 
     private Integer iconeTarefaSelected;
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_criar);
 
-
         iconeArr = new String[]{
           "Prova", "Trabalho", "Apresentação", "Extra", "Outros"
         };
 
-
-        func = new FuncAux();
+        func = new FuncAux(CriarActivity.this);
 
         dbHelper = new DataBaseHelper(getApplicationContext());
 
@@ -94,7 +87,6 @@ public class CriarActivity extends AppCompatActivity {
         iconeTarefaTextField.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 Context ct = CriarActivity.this;
                 ct.setTheme(R.style.MaterialTheme);
 
@@ -123,9 +115,7 @@ public class CriarActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                     }
                 });
-
                 builder.show();
-
             }
         });
 
@@ -136,7 +126,6 @@ public class CriarActivity extends AppCompatActivity {
                 new DatePickerDialog(CriarActivity.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
             }
         });
-
     }
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -173,14 +162,12 @@ public class CriarActivity extends AppCompatActivity {
                 retorno = R.drawable.twotone_app_settings_alt_black_18dp;
                 break;
         };
-
         return retorno;
     };
 
     private void updateDataEntrega() {
         String myFormat = "dd/MM/yyyy";
         SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
         dataEntregaTextField.setText(sdf.format(myCalendar.getTime()));
     }
 
@@ -206,7 +193,6 @@ public class CriarActivity extends AppCompatActivity {
     }
 
     private void InsertStuff(){
-
         model.TituloTarefa = tituloTarefa.getEditText().getText().toString();
         model.DescricaoTarefa = descricaoTarefa.getEditText().getText().toString();
 
@@ -214,15 +200,7 @@ public class CriarActivity extends AppCompatActivity {
             return;
 
         model.AliasTarefa = aliasTarefa.getEditText().getText().toString();
-
-        try {
-            dateParse = new SimpleDateFormat("dd/MM/yyyy").parse(dataEntrega.getEditText().getText().toString());
-            model.DataEntrega = dateParse;
-        } catch (ParseException e) {
-           func.Toast(getApplicationContext(), "Data no formato incorreto", Toast.LENGTH_LONG);
-           return;
-        }
-
+        model.DataEntrega = dataEntrega.getEditText().getText().toString();
         model.Notificar = notificar.getEditText().getText().toString();
         model.ValorNota = Float.parseFloat(valorNota.getEditText().getText().toString());
         //TODO Selecionar icones para disponibilizar
@@ -231,18 +209,14 @@ public class CriarActivity extends AppCompatActivity {
         boolean success = dbHelper.SalvarTarefa(model);
 
         if (success){
-
             InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
                     InputMethodManager.RESULT_UNCHANGED_SHOWN);
 
             startActivity(new Intent(CriarActivity.this, HomeActivity.class));
-
-            func.Toast(getApplicationContext(), "Registro incluso com sucesso!", Toast.LENGTH_LONG);
-
+            func.Toast("Registro incluso com sucesso!", Toast.LENGTH_LONG);
         }else{
-            func.Toast(getApplicationContext(), "Não foi possivel incluir o registro", Toast.LENGTH_LONG);
+            func.Toast("Não foi possivel incluir o registro", Toast.LENGTH_LONG);
         }
     }
-
 }

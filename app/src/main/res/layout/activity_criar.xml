@@ -20,129 +20,287 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/InputTituloTarefa"
+            <androidx.cardview.widget.CardView
+                android:id="@+id/CardViewCreateMaster"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:hint="@string/content_description_TituloTarefa"
-                app:endIconMode="clear_text"
-                app:counterEnabled="true"
-                app:counterMaxLength="@integer/MaxLengthTituloTarefa"
-                app:errorEnabled="true">
+                android:layout_height="1000dp"
+                android:padding="10dp">
 
-                <com.google.android.material.textfield.TextInputEditText
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLength="@integer/MaxLengthTituloTarefa" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    app:layout_constraintEnd_toEndOf="@+id/InputAliasTarefa"
+                    app:layout_constraintStart_toEndOf="@+id/InputAliasTarefa">
 
 
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="92dp"
+                        android:layout_marginTop="18dp"
+                        app:cardBackgroundColor="#00FFFFFF"
+                        app:cardElevation="0dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/InputDescricaoTarefa"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:hint="@string/content_description_DescricaoTarefa"
-                app:counterEnabled="true"
-                app:counterMaxLength="@integer/MaxLengthDescricaoTarefa"
-                app:errorEnabled="true">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="100dp">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLength="@integer/MaxLengthDescricaoTarefa" />
-            </com.google.android.material.textfield.TextInputLayout>
+                            <androidx.cardview.widget.CardView
+                                android:id="@+id/cardView3"
+                                android:layout_width="80dp"
+                                android:layout_height="0dp"
+                                android:layout_marginTop="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="60dp"
+                                app:cardElevation="5dp"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/InputAliasTarefa"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:hint="@string/content_description_AliasTarefa"
-                app:counterEnabled="true"
-                app:counterMaxLength="@integer/MaxLengthAliasTarefa">
+                                <ImageView
+                                    android:id="@+id/ImageViewIconeCriarTarefa"
+                                    android:layout_width="80dp"
+                                    android:layout_height="80dp"
+                                    android:adjustViewBounds="true"
+                                    android:scaleType="fitXY"
+                                    android:src="@drawable/physics">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:maxLength="@integer/MaxLengthAliasTarefa" />
-            </com.google.android.material.textfield.TextInputLayout>
+                                </ImageView>
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/InputNotificarTarefa"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:hint="@string/content_description_Notificar">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/InputDataEntregaTarefa"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:hint="@string/content_description_DataEntrega"
-                app:errorEnabled="true">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/InputDataEntregaTextField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:editable="false"
-                    android:focusable="false"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
+                            </androidx.cardview.widget.CardView>
 
 
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/InputTituloTarefa"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/content_description_TituloTarefa"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="@integer/MaxLengthTituloTarefa"
+                        app:endIconMode="clear_text"
+                        app:errorEnabled="true"
+                        app:layout_constraintStart_toStartOf="@+id/cardView4"
+                        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="@integer/MaxLengthTituloTarefa" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/InputAliasTarefa"
+                        android:layout_width="203dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/content_description_AliasTarefa"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="@integer/MaxLengthAliasTarefa"
+                        app:layout_constraintStart_toStartOf="@+id/InputDescricaoTarefa"
+                        app:layout_constraintTop_toBottomOf="@+id/InputDescricaoTarefa">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="@integer/MaxLengthAliasTarefa"
+                            android:singleLine="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/InputDescricaoTarefa"
+                        android:layout_width="409dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/content_description_DescricaoTarefa"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="@integer/MaxLengthDescricaoTarefa"
+                        app:errorEnabled="true"
+                        app:layout_constraintStart_toStartOf="@+id/InputTituloTarefa"
+                        app:layout_constraintTop_toBottomOf="@+id/InputTituloTarefa">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLength="@integer/MaxLengthDescricaoTarefa" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/InputDataEntregaTarefa"
+                        android:layout_width="203dp"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/content_description_DataEntrega"
+                        app:errorEnabled="true"
+                        app:layout_constraintStart_toStartOf="@+id/InputAliasTarefa"
+                        app:layout_constraintTop_toBottomOf="@+id/InputAliasTarefa"
+                        app:startIconDrawable="@drawable/twotone_insert_invitation_black_18dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/InputDataEntregaTextField"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:clickable="true"
+                            android:editable="false"
+                            android:focusable="false"
+                            android:singleLine="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/InputValorNota"
+                        android:layout_width="203dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="1dp"
+                        android:layout_marginRight="1dp"
+                        android:hint="@string/content_description_ValorNota"
+                        app:counterEnabled="true"
+                        app:counterMaxLength="@integer/MaxLengthValorNotaTarefa"
+                        app:layout_constraintEnd_toEndOf="@+id/InputDescricaoTarefa"
+                        app:layout_constraintTop_toBottomOf="@+id/InputDescricaoTarefa">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="numberDecimal"
+                            android:maxLength="@integer/MaxLengthValorNotaTarefa"
+                            android:singleLine="true" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/InputIconeTarefa"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:hint="@string/content_description_IconeTarefa">
+                    <com.google.android.material.switchmaterial.SwitchMaterial
+                        android:id="@+id/switchNotificar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginStart="35dp"
+                        android:layout_marginLeft="35dp"
+                        android:layout_marginTop="24dp"
+                        android:checked="true"
+                        android:text="Notificar"
+                        app:layout_constraintStart_toEndOf="@+id/InputDataEntregaTarefa"
+                        app:layout_constraintTop_toBottomOf="@+id/InputValorNota" />
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/InputIconeTarefaTextField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:clickable="true"
-                    android:editable="false"
-                    android:focusable="false"
-                    android:singleLine="true" />
-            </com.google.android.material.textfield.TextInputLayout>
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/CardViewNotificar"
+                        android:layout_width="409dp"
+                        android:layout_height="300dp"
+                        app:layout_constraintStart_toStartOf="@+id/InputDataEntregaTarefa"
+                        app:layout_constraintTop_toBottomOf="@+id/InputDataEntregaTarefa">
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/InputValorNota"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_margin="5dp"
-                android:hint="@string/content_description_ValorNota"
-                app:counterEnabled="true"
-                app:counterMaxLength="@integer/MaxLengthValorNotaTarefa">
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            app:layout_constraintBottom_toTopOf="@+id/textInputLayout3"
+                            app:layout_constraintTop_toTopOf="@+id/textInputLayout3">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="numberDecimal"
-                    android:maxLength="@integer/MaxLengthValorNotaTarefa" />
-            </com.google.android.material.textfield.TextInputLayout>
+                            <TextView
+                                android:id="@+id/textView"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="16dp"
+                                android:text="Frequencia"
+                                app:layout_constraintStart_toStartOf="@+id/textInputLayout2"
+                                app:layout_constraintTop_toTopOf="parent" />
 
-            <Button
-                android:id="@+id/SalvarTarefaButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:text="@string/ButtonSalvarTarefaText" />
 
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputLayout2"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="21dp"
+                                android:layout_marginLeft="21dp"
+                                android:layout_marginTop="8dp"
+                                android:layout_marginEnd="36dp"
+                                android:layout_marginRight="36dp"
+                                app:layout_constraintEnd_toStartOf="@+id/textInputLayout"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textView">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="hint" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputLayout"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginEnd="54dp"
+                                android:layout_marginRight="54dp"
+                                app:layout_constraintBaseline_toBaselineOf="@+id/textInputLayout2"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintStart_toEndOf="@+id/textInputLayout2">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="hint" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                android:id="@+id/textInputLayout3"
+                                android:layout_width="200dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="7dp"
+                                app:layout_constraintStart_toStartOf="@+id/textView4"
+                                app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="hint" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <TextView
+                                android:id="@+id/textView4"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="21dp"
+                                android:layout_marginLeft="21dp"
+                                android:layout_marginTop="20dp"
+                                android:text="Inicio"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textInputLayout2" />
+
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/InputNotificarTarefa"
+                        android:layout_width="409dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="2dp"
+                        android:layout_marginLeft="2dp"
+                        android:layout_marginTop="140dp"
+                        android:hint="@string/content_description_Notificar"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/SalvarTarefaButton">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:id="@+id/SalvarTarefaButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="18dp"
+                        android:text="@string/ButtonSalvarTarefaText"
+                        app:layout_constraintStart_toStartOf="@+id/CardViewNotificar"
+                        app:layout_constraintTop_toBottomOf="@+id/CardViewNotificar" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
     </ScrollView>
 

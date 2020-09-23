@@ -12,9 +12,10 @@ import com.drdev.cpdm2s2020.Service.DataBaseHelper;
 import com.drdev.cpdm2s2020.Service.FuncAux;
 import com.drdev.cpdm2s2020.Service.RecyclerAdapterVisualizar;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class ExibirActivity extends AppCompatActivity implements  RecyclerAdapterVisualizar.OnTarefaListener{
+public class ExibirActivity extends AppCompatActivity implements  RecyclerAdapterVisualizar.OnTarefaListener, Serializable {
     private FuncAux func;
 
     private ArrayList<TarefaModel> tarefas;
@@ -43,6 +44,11 @@ public class ExibirActivity extends AppCompatActivity implements  RecyclerAdapte
         func.Toast("Position = " + position, Toast.LENGTH_LONG);
 
         TarefaModel model = tarefas.get(position);
-        //startActivity(new Intent(ExibirActivity.this, EditarActivity.class));
+
+        Intent intent = new Intent(ExibirActivity.this, EditarActivity.class);
+
+        //intent.putExtra("", model);
+
+        startActivity(intent);
     }
 }

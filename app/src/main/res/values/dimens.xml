@@ -9,4 +9,6 @@
     <dimen name="CardMenuDefaultDimension">150dp</dimen>
     <dimen name="RecyclerViewDefaultMargin">3dp</dimen>
     <dimen name="RecyclewrViewDefaultPadding">20dp</dimen>
+    <dimen name="InputTextDefaultConstrainedHeightValue" />
+    <dimen name="InputLayoutDefaultMargin">10dp</dimen>
 </resources>

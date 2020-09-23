@@ -1,6 +1,7 @@
 package com.drdev.cpdm2s2020.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
@@ -11,13 +12,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.DatePicker;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.drdev.cpdm2s2020.Model.TarefaModel;
 import com.drdev.cpdm2s2020.R;
 import com.drdev.cpdm2s2020.Service.DataBaseHelper;
 import com.drdev.cpdm2s2020.Service.FuncAux;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.text.SimpleDateFormat;
@@ -39,16 +44,24 @@ public class CriarActivity extends AppCompatActivity {
     private TextInputLayout notificar;
     private TextInputLayout valorNota;
     private TextInputLayout dataEntrega;
-    private TextInputLayout iconeTarefa;
+
+    private CardView cardViewNotificar;
+    private SwitchMaterial switchNotificar;
 
     private TextInputEditText dataEntregaTextField;
-    private TextInputEditText iconeTarefaTextField;
 
     private Button insertBT;
 
     private String[] iconeArr;
 
-    private Integer iconeTarefaSelected;
+    private Integer iconeTarefaSelected = R.drawable.physics;
+    private Integer iconeTarefaSelectedIndex = 4;
+
+    private ImageView iconeTarefaImageView;
+    private TextView clickIcon;
+
+    private boolean isOpace = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,16 +78,29 @@ public class CriarActivity extends AppCompatActivity {
 
         model = new TarefaModel();
 
+        cardViewNotificar = findViewById(R.id.CardViewNotificar);
+        switchNotificar = findViewById(R.id.switchNotificar);
         tituloTarefa = findViewById(R.id.InputTituloTarefa);
         aliasTarefa = findViewById(R.id.InputAliasTarefa);
         descricaoTarefa = findViewById(R.id.InputDescricaoTarefa);
         notificar = findViewById(R.id.InputNotificarTarefa);
         valorNota = findViewById(R.id.InputValorNota);
         dataEntrega = findViewById(R.id.InputDataEntregaTarefa);
-        iconeTarefa = findViewById(R.id.InputIconeTarefa);
         dataEntregaTextField = findViewById(R.id.InputDataEntregaTextField);
-        iconeTarefaTextField = findViewById(R.id.InputIconeTarefaTextField);
         insertBT = findViewById(R.id.SalvarTarefaButton);
+        iconeTarefaImageView = findViewById(R.id.ImageViewIconeCriarTarefa);
+
+        switchNotificar.setChecked(false);
+        //cardViewNotificar.setVisibility(View.GONE );
+
+        switchNotificar.setOnCheckedChangeListener( new CompoundButton.OnCheckedChangeListener(){
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                cardViewNotificar.setVisibility(isChecked ? View.VISIBLE : View.GONE );
+            }
+        });
+
+
 
         insertBT.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +110,7 @@ public class CriarActivity extends AppCompatActivity {
             }
         });
 
-        iconeTarefaTextField.setOnClickListener(new View.OnClickListener() {
+        iconeTarefaImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Context ct = CriarActivity.this;
@@ -93,12 +119,12 @@ public class CriarActivity extends AppCompatActivity {
                 MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(ct);
                 builder.setTitle("Selecione...");
 
-                builder.setSingleChoiceItems(iconeArr, 0, new DialogInterface.OnClickListener() {
+                builder.setSingleChoiceItems(iconeArr, iconeTarefaSelectedIndex, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        iconeTarefaSelected = GetDrawable(which);
-
-                        iconeTarefa.getEditText().setText(iconeTarefaSelected);
+                        iconeTarefaSelectedIndex = which;
+                        iconeTarefaSelected = GetDrawable(iconeTarefaSelectedIndex);
+                        iconeTarefaImageView.setImageResource(iconeTarefaSelected);
                     }
                 });
 
@@ -140,26 +166,29 @@ public class CriarActivity extends AppCompatActivity {
         }
     };
 
-
     private Integer GetDrawable(Integer selection){
 
         Integer retorno = R.drawable.nightsky;
-
         switch (selection){
+            case 0:
+                //"Prova"
+                retorno = R.drawable.test;
+                break;
             case 1:
-                retorno = R.drawable.twotone_more_vert_black_48;
+                //Trabalho
+                retorno = R.drawable.abacus;
                 break;
             case 2:
-                retorno = R.drawable.darkgrid;
+                //Apresentação
+                retorno = R.drawable.projector;
                 break;
             case 3:
-                retorno = R.drawable.darkly;
+                //Extra
+                retorno = R.drawable.medal;
                 break;
             case 4:
-                retorno = R.drawable.tec;
-                break;
-            case 5:
-                retorno = R.drawable.twotone_app_settings_alt_black_18dp;
+                //Outros
+                retorno = R.drawable.physics;
                 break;
         };
         return retorno;
@@ -189,6 +218,7 @@ public class CriarActivity extends AppCompatActivity {
             dataEntrega.setError("Data de entrega é obrigatória");
             retorno = false;
         }
+
         return retorno;
     }
 
@@ -203,7 +233,6 @@ public class CriarActivity extends AppCompatActivity {
         model.DataEntrega = dataEntrega.getEditText().getText().toString();
         model.Notificar = notificar.getEditText().getText().toString();
         model.ValorNota = Float.parseFloat(valorNota.getEditText().getText().toString());
-        //TODO Selecionar icones para disponibilizar
         model.IconeTarefa = iconeTarefaSelected;
 
         boolean success = dbHelper.SalvarTarefa(model);

@@ -43,5 +43,21 @@
     <string name="content_description_Button_Salvar_Tarefa">SALVAR</string>
     <string name="ButtonSalvarTarefaText">SALVAR</string>
 
-
+    <string-array name="iconeArr">
+        <item>Prova</item>
+        <item>Trabalho</item>
+        <item>Apresentação</item>
+        <item>Extra</item>
+        <item>Outros</item>
+    </string-array>
+    <string-array name="notificacaoArr">
+        <item>No dia</item>
+        <item>Dias antes</item>
+        <item>Horas</item>
+    </string-array>
+    <string-array name="notificacaoRepetirArr">
+        <item>Semanalmente</item>
+        <item>Diariamente</item>
+        <item>De hora em hora</item>
+    </string-array>
 </resources>

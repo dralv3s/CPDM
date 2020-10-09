@@ -65,8 +65,8 @@ public class HomeActivity extends AppCompatActivity {
 
         func = new FuncAux(HomeActivity.this);
 
-        String appTitle = func.GetUserPrefsString(getString(R.string.DisplayName), getString(R.string.BemVindo));
-        getSupportActionBar().setTitle(getString(R.string.BemVindo) + " " + appTitle);
+        String displayName = func.GetUserPrefsString(getString(R.string.DisplayName), getString(R.string.BemVindo));
+        getSupportActionBar().setTitle(getString(R.string.BemVindo) + " " + displayName);
         SetListeners();
         updateUI();
     }

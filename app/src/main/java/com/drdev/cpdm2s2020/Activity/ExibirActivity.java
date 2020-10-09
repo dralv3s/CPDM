@@ -41,13 +41,13 @@ public class ExibirActivity extends AppCompatActivity implements  RecyclerAdapte
 
     @Override
     public void onTarefaClick(int position) {
-        func.Toast("Position = " + position, Toast.LENGTH_LONG);
 
         TarefaModel model = tarefas.get(position);
 
-        Intent intent = new Intent(ExibirActivity.this, EditarActivity.class);
+        Intent intent = new Intent(ExibirActivity.this, CriarActivity.class);
 
-        //intent.putExtra("", model);
+        intent.putExtra("IdTarefa", model.IdTarefa);
+        intent.putExtra("Action", model.IdTarefa);
 
         startActivity(intent);
     }

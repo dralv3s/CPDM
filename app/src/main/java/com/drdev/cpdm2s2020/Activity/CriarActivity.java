@@ -7,18 +7,16 @@ import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.ScrollView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 import com.drdev.cpdm2s2020.Model.TarefaModel;
 import com.drdev.cpdm2s2020.R;
@@ -30,7 +28,6 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.Locale;
 
 public class CriarActivity extends AppCompatActivity {
@@ -41,6 +38,7 @@ public class CriarActivity extends AppCompatActivity {
     private FuncAux func;
     private TarefaModel model;
 
+    private ScrollView scrollView;
     private TextInputLayout tituloTarefa;
     private TextInputLayout aliasTarefa;
     private TextInputLayout descricaoTarefa;
@@ -87,20 +85,17 @@ public class CriarActivity extends AppCompatActivity {
         GetObjectsFromView();
         SetListeners();
         PopulateSpinners();
+        InitFields();
 
         action = GetAction();
 
         switch(action){
             case 1:
-                //Criando registro
-                InitFields();
+                PopulateFields();
+                insertBT.setText(getString(R.string.ButtonUpdateTarefaText));
                 break;
             case 2:
-                //Editando registro
-                PupulateFields();
-                break;
-            case 3:
-                //Visualizando registro
+                PopulateFields();
                 DisableFields();
                 break;
             default:
@@ -108,23 +103,52 @@ public class CriarActivity extends AppCompatActivity {
         }
     }
 
-
-
     private void DisableFields() {
+        iconeTarefaImageView.setEnabled(false);
+        tituloTarefa.setEnabled(false);
+        descricaoTarefa.setEnabled(false);
+        aliasTarefa.setEnabled(false);
+        valorNota.setEnabled(false);
+        dataEntrega.setEnabled(false);
+        switchNotificar.setEnabled(false);
+        textInputLayoutFrequencia.setEnabled(false);
+        spinnerNotificacao.setEnabled(false);
+        switchNotificarRepetir.setEnabled(false);
+        spinnerNotificacaoRepetir.setEnabled(false);
+        insertBT.setVisibility(View.INVISIBLE);
+        iconeTarefaImageView.setEnabled(false);
     }
 
-    private void PupulateFields() {
-    }
+    private void PopulateFields() {
+        TarefaModel tarefa = new TarefaModel();
+        tarefa = dbHelper.GetTarefa(IdTarefa);
 
+        iconeTarefaImageView.setImageResource(tarefa.IconeTarefa);
+        tituloTarefa.getEditText().setText(tarefa.TituloTarefa);
+        descricaoTarefa.getEditText().setText(tarefa.DescricaoTarefa);
+        aliasTarefa.getEditText().setText(tarefa.AliasTarefa);
+        valorNota.getEditText().setText(tarefa.ValorNota.toString());
+        dataEntrega.getEditText().setText(tarefa.DataEntrega);
+
+        if (!tarefa.Notificar.equals("")){
+            String[] arr = tarefa.Notificar.split("\\|", tarefa.Notificar.length() -2);
+            switchNotificar.setChecked(true);
+            textInputLayoutFrequencia.getEditText().setText(arr[0]);
+            spinnerNotificacao.setSelection(Integer.parseInt(arr[1]));
+            if (!arr[2].equals("")){
+                switchNotificarRepetir.setChecked(true);
+                spinnerNotificacaoRepetir.setSelection(Integer.parseInt(arr[1]));
+            }
+        }
+    }
 
     private int GetAction() {
         Bundle extras = getIntent().getExtras();
-
         if(extras != null) {
-            action = Integer.parseInt(extras.getString("Action"));
-            IdTarefa = Integer.parseInt(extras.getString("IdTarefa"));
+            action = extras.getInt(getString(R.string.Action));
+            IdTarefa = extras.getInt(getString(R.string.IdTarefa));
         }
-        return 0;
+        return action;
     }
 
     private void PopulateSpinners(){
@@ -144,12 +168,11 @@ public class CriarActivity extends AppCompatActivity {
     }
 
     private void InitFields(){
-
         switchNotificarRepetir.setChecked(false);
         spinnerNotificacaoRepetir.setVisibility(View.GONE);
         switchNotificar.setChecked(false);
         cardViewNotificar.setVisibility(View.GONE);
-        textInputLayoutFrequencia.getEditText().setText(0);
+        textInputLayoutFrequencia.getEditText().setText("0");
     }
 
     private void SetListeners() {
@@ -196,7 +219,10 @@ public class CriarActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                InsertStuff();
+                if (action == 0)
+                    InsertStuff();
+                else
+                    UpdateStuff();
             }
         });
 
@@ -289,6 +315,31 @@ public class CriarActivity extends AppCompatActivity {
         return retorno;
     }
 
+    private void UpdateStuff(){
+        if(!ValidarCampos())
+            return;
+
+        model.IdTarefa = IdTarefa;
+        model.TituloTarefa = tituloTarefa.getEditText().getText().toString();
+        model.DescricaoTarefa = descricaoTarefa.getEditText().getText().toString();
+        model.AliasTarefa = aliasTarefa.getEditText().getText().toString();
+        model.DataEntrega = dataEntrega.getEditText().getText().toString();
+        model.ValorNota = Double.parseDouble(valorNota.getEditText().getText().toString());
+        model.IconeTarefa = iconeTarefaSelected;
+        model.Notificar = BuildNotificacao();
+
+        boolean success = dbHelper.UpdateTarefa(model);
+
+        if (success){
+            HideKeyboard();
+            startActivity(new Intent(CriarActivity.this, HomeActivity.class));
+            func.Toast("Registro incluso com sucesso!", Toast.LENGTH_LONG);
+            finish();
+        }else{
+            func.Toast("Não foi possivel incluir o registro", Toast.LENGTH_LONG);
+        }
+    }
+
     private void InsertStuff(){
         if(!ValidarCampos())
             return;
@@ -297,22 +348,40 @@ public class CriarActivity extends AppCompatActivity {
         model.DescricaoTarefa = descricaoTarefa.getEditText().getText().toString();
         model.AliasTarefa = aliasTarefa.getEditText().getText().toString();
         model.DataEntrega = dataEntrega.getEditText().getText().toString();
-        model.ValorNota = Float.parseFloat(valorNota.getEditText().getText().toString());
+        model.ValorNota = Double.parseDouble(valorNota.getEditText().getText().toString());
         model.IconeTarefa = iconeTarefaSelected;
         model.Notificar = BuildNotificacao();
 
         boolean success = dbHelper.SalvarTarefa(model);
 
         if (success){
-            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),
-                    InputMethodManager.RESULT_UNCHANGED_SHOWN);
+            HideKeyboard();
+
+            Intent intent = new Intent(CriarActivity.this, HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
+            intent.putExtra("EXIT", true);
 
             startActivity(new Intent(CriarActivity.this, HomeActivity.class));
             func.Toast("Registro incluso com sucesso!", Toast.LENGTH_LONG);
+            finish();
         }else{
             func.Toast("Não foi possivel incluir o registro", Toast.LENGTH_LONG);
         }
+    }
+
+//    @Override
+//    public void onBackPressed() {
+//        //zfinish();
+//
+//    }
+
+    private void HideKeyboard(){
+        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+
+        if (imm.isAcceptingText())
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), InputMethodManager.RESULT_UNCHANGED_SHOWN);
+
     }
 
     private String BuildNotificacao() {
@@ -330,6 +399,7 @@ public class CriarActivity extends AppCompatActivity {
     }
 
     private void GetObjectsFromView(){
+        scrollView = findViewById(R.id.CriarScrollView);
         switchNotificarRepetir = findViewById(R.id.switchRepetir);
         spinnerNotificacao = findViewById(R.id.spinnerNotificacao);
         spinnerNotificacaoRepetir = findViewById(R.id.spinnerRepetir);

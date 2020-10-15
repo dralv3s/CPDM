@@ -92,8 +92,6 @@ public class FirstActivity extends AppCompatActivity {
     }
 
     private void StartGoogleServices(){
-
-
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestProfile()
                 .requestId()
@@ -106,8 +104,8 @@ public class FirstActivity extends AppCompatActivity {
         GoogleSignInAccount currentUserGoogle = GoogleSignIn.getLastSignedInAccount(this);
 
         if (currentUserGoogle != null){
-            //GoogleSignOut();
             startActivity(new Intent(FirstActivity.this, HomeActivity.class));
+            finish();
         }
     }
 
@@ -145,10 +143,6 @@ public class FirstActivity extends AppCompatActivity {
             }else{
                 func.Toast("Não foi possivel recuperar os dados do usuario, verifique as permissoes do aplicativo e tente novamente.",0);
             }
-
-
-
-
         } catch (ApiException e) {
             func.Toast("Ocorreu um erro ao registrar o usuario, tente novamente mais tarde.",0);
         }
@@ -165,6 +159,7 @@ public class FirstActivity extends AppCompatActivity {
 
                             func.SaveUserPrefs(getString(R.string.IdTokenFirebase),user.getUid());
                             startActivity(new Intent(FirstActivity.this, HomeActivity.class));
+                            finish();
                         } else {
                             func.Toast("Não foi possivel criar o usuario, tente novamente mais tarde.", 1 );
                         }
@@ -183,7 +178,7 @@ public class FirstActivity extends AppCompatActivity {
 
         if (currentUserFB != null){
             startActivity(new Intent(FirstActivity.this, HomeActivity.class));
-            //FirebaseAuth.getInstance().signOut();
+            finish();
         }
     }
 
@@ -213,7 +208,7 @@ public class FirstActivity extends AppCompatActivity {
                             FirebaseUser user = task.getResult().getUser();
                             func.SaveUserPrefs(getString(R.string.IdTokenGoogle), user.getUid());
                             startActivity(new Intent(FirstActivity.this, HomeActivity.class));
-
+                            finish();
                         }else{
                             func.Toast("Não foi possivel registrar o usuario, verifique a sua conexão e tente novamente.",0);
                         }

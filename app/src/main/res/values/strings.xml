@@ -42,7 +42,11 @@
     <string name="content_description_IconeTarefa">Icone</string>
     <string name="content_description_Button_Salvar_Tarefa">SALVAR</string>
     <string name="ButtonSalvarTarefaText">SALVAR</string>
+    <string name="ButtonUpdateTarefaText">ATUALIZAR</string>
 
+    <string name="Action">Action</string>
+    <string name="IdTarefa">IdTarefa</string>
+ 
     <string-array name="iconeArr">
         <item>Prova</item>
         <item>Trabalho</item>

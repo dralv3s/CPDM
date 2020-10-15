@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class TarefaModel {
 
-    public int IdTarefa;
+    public Integer IdTarefa;
 
     public String TituloTarefa;
 
@@ -14,15 +14,15 @@ public class TarefaModel {
 
     public String Notificar;
 
-    public float ValorNota;
+    public Double ValorNota;
 
     public String DataEntrega;
 
-    public int IconeTarefa;
+    public Integer IconeTarefa;
 
-    public int FlStatus;
+    public Integer FlStatus;
 
     public TarefaModel() {
+        FlStatus = 1;
     }
-
 }

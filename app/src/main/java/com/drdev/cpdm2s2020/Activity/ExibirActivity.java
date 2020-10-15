@@ -22,33 +22,49 @@ public class ExibirActivity extends AppCompatActivity implements  RecyclerAdapte
     private RecyclerView recyclerView;
     private LinearLayoutManager layoutManager;
     private DataBaseHelper db;
+    private int action = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exibir);
-        func = new FuncAux(ExibirActivity.this);
-        db = new DataBaseHelper(getApplicationContext());
+
+        Init();
+        GetData();
+        SetRecyclerView();
+        GetExtras();
+    }
+
+    private void GetExtras() {
+        Bundle extras = getIntent().getExtras();
+        if(extras != null)
+            action = extras.getInt(getString(R.string.Action));
+    }
+
+    private void GetData() {
         tarefas = db.GetTarefasList();
+    }
+
+    private void SetRecyclerView() {
         recyclerView = findViewById(R.id.VisualizarRecyclerView);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(layoutManager);
         RecyclerAdapterVisualizar adapter = new RecyclerAdapterVisualizar(this, tarefas, this);
-
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
+    private void Init() {
+        func = new FuncAux(ExibirActivity.this);
+        db = new DataBaseHelper(getApplicationContext());
+    }
+
     @Override
     public void onTarefaClick(int position) {
-
         TarefaModel model = tarefas.get(position);
-
         Intent intent = new Intent(ExibirActivity.this, CriarActivity.class);
-
-        intent.putExtra("IdTarefa", model.IdTarefa);
-        intent.putExtra("Action", model.IdTarefa);
-
+        intent.putExtra(getString(R.string.IdTarefa), model.IdTarefa);
+        intent.putExtra(getString(R.string.Action), action);
         startActivity(intent);
     }
 }

@@ -1,12 +1,13 @@
 package com.drdev.cpdm2s2020.Activity;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -15,6 +16,14 @@ import com.drdev.cpdm2s2020.Model.TarefaModel;
 import com.drdev.cpdm2s2020.R;
 import com.drdev.cpdm2s2020.Service.DataBaseHelper;
 import com.drdev.cpdm2s2020.Service.FuncAux;
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.initialization.InitializationStatus;
+import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -23,14 +32,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
-import java.time.Instant;
-import java.time.ZoneOffset;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -48,7 +51,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private CardView visualisarCardView;
     private CardView incluirCardView;
-    private CardView perfilCardView;
+    private CardView editarCardView;
     private CardView configCardView;
 
     private FuncAux func;
@@ -58,13 +61,29 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseUser currentUserFB;
     GoogleSignInAccount currentUserGoogle;
 
+    private AdView mAdView;
+
+    Notification.Builder notification;
+    private int notficationId = 2313;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        func = new FuncAux(HomeActivity.this);
+        MobileAds.initialize(this, new OnInitializationCompleteListener() {
+            @Override
+            public void onInitializationComplete(InitializationStatus initializationStatus) {
+            }
+        });
 
+        mAdView = findViewById(R.id.adViewHome);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+
+
+
+        func = new FuncAux(HomeActivity.this);
         String displayName = func.GetUserPrefsString(getString(R.string.DisplayName), getString(R.string.BemVindo));
         getSupportActionBar().setTitle(getString(R.string.BemVindo) + " " + displayName);
         SetListeners();
@@ -102,13 +121,49 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void SetListeners(){
+        mAdView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                // Code to be executed when an ad finishes loading.
+            }
+
+            @Override
+            public void onAdFailedToLoad(LoadAdError adError) {
+                // Code to be executed when an ad request fails.
+            }
+
+            @Override
+            public void onAdOpened() {
+                // Code to be executed when an ad opens an overlay that
+                // covers the screen.
+            }
+
+            @Override
+            public void onAdClicked() {
+                // Code to be executed when the user clicks on an ad.
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                // Code to be executed when the user has left the app.
+            }
+
+            @Override
+            public void onAdClosed() {
+                // Code to be executed when the user is about to return
+                // to the app after tapping on an ad.
+            }
+        });
+
 
         visualisarCardView = findViewById(R.id.cardViewVisualizar);
         visualisarCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                startActivity(new Intent(HomeActivity.this, ExibirActivity.class));
+                Intent intent = new Intent(HomeActivity.this, ExibirActivity.class);
+                intent.putExtra(getString(R.string.Action), getResources().getInteger(R.integer.VisualizarAction));
+                startActivity(intent);
             }
         });
 
@@ -121,12 +176,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        perfilCardView = findViewById(R.id.cardViewEditar);
-        perfilCardView.setOnClickListener(new View.OnClickListener() {
+        editarCardView = findViewById(R.id.cardViewEditar);
+        editarCardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view)
             {
-                startActivity(new Intent(HomeActivity.this, PerfilActivity.class));
+                Intent intent = new Intent(HomeActivity.this, ExibirActivity.class);
+                intent.putExtra(getString(R.string.Action), getResources().getInteger(R.integer.EditarAction));
+                startActivity(intent);
             }
         });
 
@@ -135,11 +192,42 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-                startActivity(new Intent(HomeActivity.this, SetupActivity.class));
+//               // startActivity(new Intent(HomeActivity.this, SetupActivity.class));
+//                notification.setSmallIcon(R.mipmap.ic_launcher_round)
+//                            //.setTicker("Me chupa no ticker")
+//                            .setContentTitle("Me chupa no titulo")
+//                            .setContentText("Me chupa conteudo");
+//                            //.setWhen(System.currentTimeMillis() + 2000);
+//
+//                Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
+//                PendingIntent pendingIntent = PendingIntent.getActivity(HomeActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+//                notification.setContentIntent(pendingIntent);
+//
+//                NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
+//
+//                nm.notify(notficationId, notification.build());
+                addNotification();
+
             }
         });
     }
 
+    private void addNotification() {
+        // Builds your notification
+        Notification.Builder builder = new Notification.Builder(this)
+                .setSmallIcon(R.mipmap.ic_launcher_round)
+                .setContentTitle("John's Android Studio Tutorials")
+                .setContentText("A video has just arrived!");
+
+        // Creates the intent needed to show the notification
+        Intent notificationIntent = new Intent(this, HomeActivity.class);
+        PendingIntent contentIntent = PendingIntent.getActivity(this, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(contentIntent);
+
+        // Add as notification
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        manager.notify(notficationId, builder.build());
+    }
 
     private void LogOut(){
         SignOutFirebase();

@@ -4,50 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#00FFFFFF"
     tools:context=".Activity.HomeActivity">
-
-    <ImageView
-        android:id="@+id/backGroundImgHome"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:adjustViewBounds="true"
-        android:clickable="false"
-        android:contentDescription="@string/contentAppHomeBackGround"
-        android:scaleType="fitXY"
-        android:src="@drawable/nightsky"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView10"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="145dp"
+        android:background="#00FFFFFF"
         app:cardBackgroundColor="@color/ContainerBackground_default"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:cardCornerRadius="@dimen/CardCornerDefaultRadius"
+        app:layout_constraintBottom_toTopOf="@+id/adViewHome"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#00FFFFFF">
 
 
             <ScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0dp"
+                android:background="#00FFFFFF"
+                android:fillViewport="true"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:background="#00FFFFFF"
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
@@ -55,35 +44,26 @@
                         android:layout_width="match_parent"
                         android:layout_height="100dp"
                         android:layout_marginBottom="20dp"
-                        app:cardBackgroundColor="#D1CDCD"
-                        app:layout_constraintTop_toTopOf="parent">>
+                        android:background="#00FFFFFF"
+                        app:cardBackgroundColor="#00D1CDCD"
+                        app:layout_constraintTop_toTopOf="parent"><![CDATA[>
 
-                        <ImageView
-                            android:id="@+id/imageViewLogo"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:contentDescription="@string/imageViewIncluirNovoContentDescription"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/darkgrid" />
+                        ]]>
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="#00FFFFFF">
 
-                            <TextView
-                                android:id="@+id/textViewLogotipoTitulo"
-                                android:layout_width="wrap_content"
+                            <ImageView
+                                android:id="@+id/imageView"
+                                android:layout_width="120dp"
                                 android:layout_height="wrap_content"
-                                android:text="LOGOTIPO"
-                                android:textColor="#FFFFFB"
-                                android:textIsSelectable="false"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                app:layout_constraintBottom_toBottomOf="parent"
+                                android:background="#00FFFFFF"
                                 app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="parent" />
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:srcCompat="@drawable/taskmanagericon" />
 
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -96,114 +76,106 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/CardMenuDefaultDimension"
                         android:layout_marginBottom="2dp"
+                        android:background="#00FFFFFF"
                         android:clickable="true"
                         android:focusable="true"
-                        app:cardBackgroundColor="#D1CDCD">
-
-                        <ImageView
-                            android:id="@+id/imageViewVisualizar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:background="#2B2B2B"
-                            android:contentDescription="@string/imageViewVisualizarContentDesc"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/nightsky" />
+                        app:cardBackgroundColor="#00D1CDCD">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <TextView
-                                android:id="@+id/textViewVisualisarTitulo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <ImageView
+                                android:id="@+id/imageViewVisualizar"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginTop="16dp"
-                                android:text="Visualizar"
-                                android:textColor="#FFFFFB"
-                                android:textIsSelectable="false"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
+                                android:adjustViewBounds="true"
+                                android:background="#002B2B2B"
+                                android:contentDescription="@string/imageViewVisualizarContentDesc"
+                                android:src="@drawable/viewtask"
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
                                 android:id="@+id/textViewTarefasOkLabel"
-                                android:layout_width="wrap_content"
+                                android:layout_width="101dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="1dp"
+                                android:layout_marginStart="1dp"
+                                android:layout_marginLeft="1dp"
+                                android:layout_marginTop="49dp"
+                                android:gravity="center"
                                 android:text="Em dia"
-                                android:textColor="#FFFFFB"
-                                app:layout_constraintBottom_toTopOf="@+id/textViewTarefaOKCount"
-                                app:layout_constraintEnd_toStartOf="@+id/textViewTarefaAtrasoLabel"
-                                app:layout_constraintStart_toEndOf="@+id/textViewTarefasLabel" />
-
-                            <TextView
-                                android:id="@+id/textViewTarefasLabel"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
-                                android:layout_marginLeft="16dp"
-                                android:layout_marginEnd="13dp"
-                                android:layout_marginRight="13dp"
-                                android:text="Tarefas"
-                                android:textColor="#FFFFFB"
-                                app:layout_constraintBottom_toBottomOf="@+id/textViewTarefasOkLabel"
-                                app:layout_constraintEnd_toStartOf="@+id/textViewTarefasOkLabel"
-                                app:layout_constraintHorizontal_chainStyle="spread_inside"
-                                app:layout_constraintStart_toStartOf="parent"
-                                app:layout_constraintTop_toTopOf="@+id/textViewTarefasOkLabel" />
-
-                            <TextView
-                                android:id="@+id/textViewTarefaCount"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginLeft="20dp"
-                                android:layout_marginTop="1dp"
-                                android:text="5"
-                                android:textColor="#FFFFFB"
+                                android:textColor="#000000"
+                                android:textStyle="bold"
                                 app:layout_constraintStart_toStartOf="@+id/textViewTarefasLabel"
                                 app:layout_constraintTop_toBottomOf="@+id/textViewTarefasLabel" />
 
                             <TextView
-                                android:id="@+id/textViewTarefaAtrasoLabel"
-                                android:layout_width="wrap_content"
+                                android:id="@+id/textViewTarefasLabel"
+                                android:layout_width="204dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="20dp"
-                                android:layout_marginRight="20dp"
-                                android:text="Atrasado"
-                                android:textColor="#FFFFFB"
-                                app:layout_constraintBottom_toBottomOf="@+id/textViewTarefasOkLabel"
+                                android:layout_marginTop="16dp"
+                                android:layout_marginEnd="3dp"
+                                android:layout_marginRight="3dp"
+                                android:gravity="center"
+                                android:text="Tarefas"
+                                android:textColor="#000000"
+                                android:textStyle="bold"
                                 app:layout_constraintEnd_toEndOf="parent"
-                                app:layout_constraintStart_toEndOf="@+id/textViewTarefasOkLabel"
-                                app:layout_constraintTop_toTopOf="@+id/textViewTarefasOkLabel" />
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textViewTarefaCount"
+                                android:layout_width="204dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="6dp"
+                                android:layout_marginEnd="2dp"
+                                android:layout_marginRight="2dp"
+                                android:gravity="center"
+                                android:text="5"
+                                android:textColor="#000000"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toBottomOf="@+id/textViewTarefasLabel" />
+
+                            <TextView
+                                android:id="@+id/textViewTarefaAtrasoLabel"
+                                android:layout_width="102dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="49dp"
+                                android:gravity="center"
+                                android:text="Atrasado"
+                                android:textColor="#000000"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="@+id/textViewTarefasLabel"
+                                app:layout_constraintTop_toBottomOf="@+id/textViewTarefasLabel" />
 
                             <TextView
                                 android:id="@+id/textViewTarefaAtrasoCount"
-                                android:layout_width="wrap_content"
+                                android:layout_width="102dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="24dp"
-                                android:layout_marginLeft="24dp"
                                 android:layout_marginTop="1dp"
+                                android:gravity="center"
                                 android:text="2"
-                                android:textColor="#FFFFFB"
-                                app:layout_constraintStart_toStartOf="@+id/textViewTarefaAtrasoLabel"
+                                android:textColor="#000000"
+                                android:textStyle="bold"
+                                app:layout_constraintEnd_toEndOf="@+id/textViewTarefaAtrasoLabel"
                                 app:layout_constraintTop_toBottomOf="@+id/textViewTarefaAtrasoLabel" />
 
                             <TextView
                                 android:id="@+id/textViewTarefaOKCount"
-                                android:layout_width="wrap_content"
+                                android:layout_width="101dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="17dp"
-                                android:layout_marginRight="17dp"
-                                android:layout_marginBottom="27dp"
+                                android:layout_marginTop="1dp"
+                                android:gravity="center"
                                 android:text="3"
-                                android:textColor="#FFFFFB"
-                                app:layout_constraintBottom_toBottomOf="parent"
-                                app:layout_constraintEnd_toEndOf="@+id/textViewTarefasOkLabel" />
+                                android:textColor="#000000"
+                                android:textStyle="bold"
+                                app:layout_constraintStart_toStartOf="@+id/textViewTarefasOkLabel"
+                                app:layout_constraintTop_toBottomOf="@+id/textViewTarefasOkLabel" />
 
                         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -215,37 +187,45 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/CardMenuDefaultDimension"
                         android:layout_marginBottom="2dp"
+                        android:background="#00FFFFFF"
                         android:clickable="true"
                         android:focusable="true"
-                        app:cardBackgroundColor="#D1CDCD">
+                        app:cardBackgroundColor="#00D1CDCD">
 
-
-                        <ImageView
-                            android:id="@+id/imageViewIncluir"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:contentDescription="@string/imageViewConfigContentDescription"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/darkly" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                            android:layout_height="match_parent"
+                            android:background="#00FFFFFF">
 
-                            <TextView
-                                android:id="@+id/textViewIncluirTitulo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <ImageView
+                                android:id="@+id/imageViewIncluir"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginTop="16dp"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/imageViewConfigContentDescription"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/addtask"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textViewIncluirTitulo"
+                                android:layout_width="205dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="63dp"
+                                android:layout_marginEnd="1dp"
+                                android:layout_marginRight="1dp"
+                                android:gravity="center"
                                 android:text="Nova Tarefa"
-                                android:textColor="#FFFFFB"
+                                android:textColor="#000000"
                                 android:textIsSelectable="false"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -261,35 +241,41 @@
                         android:layout_marginBottom="2dp"
                         android:clickable="true"
                         android:focusable="true"
-                        app:cardBackgroundColor="#D1CDCD">
+                        app:cardBackgroundColor="#00D1CDCD">
 
-
-                        <ImageView
-                            android:id="@+id/imageViewEditar"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:contentDescription="@string/imageViewPerfilContentDescription"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/darkgrid" />
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <TextView
-                                android:id="@+id/textViewEditarTitulo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <ImageView
+                                android:id="@+id/imageViewEditar"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginTop="16dp"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/imageViewPerfilContentDescription"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/updatetask"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textViewEditarTitulo"
+                                android:layout_width="204dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="63dp"
+                                android:layout_marginEnd="1dp"
+                                android:layout_marginRight="1dp"
+                                android:gravity="center"
                                 android:text="Editar"
-                                android:textColor="#FFFFFB"
+                                android:textColor="#000000"
                                 android:textIsSelectable="false"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -302,37 +288,43 @@
                         android:id="@+id/cardViewSetup"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/CardMenuDefaultDimension"
-                        android:layout_marginBottom="2dp"
+                        android:layout_marginBottom="100dp"
                         android:clickable="true"
                         android:focusable="true"
-                        app:cardBackgroundColor="#D1CDCD">
-
-                        <ImageView
-                            android:id="@+id/imageViewSetup"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:adjustViewBounds="true"
-                            android:contentDescription="@string/imageViewIncluirNovoContentDescription"
-                            android:scaleType="fitXY"
-                            android:src="@drawable/tec" />
+                        app:cardBackgroundColor="#00D1CDCD">
 
                         <androidx.constraintlayout.widget.ConstraintLayout
                             android:layout_width="match_parent"
                             android:layout_height="match_parent">
 
-                            <TextView
-                                android:id="@+id/textViewSetupTitulo"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
+                            <ImageView
+                                android:id="@+id/imageViewSetup"
+                                android:layout_width="120dp"
+                                android:layout_height="120dp"
                                 android:layout_marginStart="16dp"
                                 android:layout_marginLeft="16dp"
                                 android:layout_marginTop="16dp"
+                                android:adjustViewBounds="true"
+                                android:contentDescription="@string/imageViewIncluirNovoContentDescription"
+                                android:scaleType="fitXY"
+                                android:src="@drawable/configtasks"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent" />
+
+                            <TextView
+                                android:id="@+id/textViewSetupTitulo"
+                                android:layout_width="204dp"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="63dp"
+                                android:layout_marginEnd="1dp"
+                                android:layout_marginRight="1dp"
+                                android:gravity="center"
                                 android:text="Configurações"
-                                android:textColor="#FFFFFB"
+                                android:textColor="#000000"
                                 android:textIsSelectable="false"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintEnd_toEndOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
 
@@ -346,5 +338,31 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/backGroundImgHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:adjustViewBounds="true"
+        android:clickable="false"
+        android:contentDescription="@string/contentAppHomeBackGround"
+        android:scaleType="fitXY"
+        android:src="@drawable/wallpaperlogin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adViewHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        app:adSize="BANNER"
+        app:adUnitId="ca-app-pub-3940256099942544/6300978111"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView10" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
+        <!--
+                app = ca-app-pub-1406951515203568~6182640131
+                add = ca-app-pub-1406951515203568/1281667246
+        -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-1406951515203568~6182640131"/>
+
+
         <activity android:name=".Activity.ExibirDetailActivity"></activity>
         <activity android:name=".Activity.EditarActivity" />
         <activity android:name=".Activity.PerfilActivity" />
@@ -24,5 +35,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>

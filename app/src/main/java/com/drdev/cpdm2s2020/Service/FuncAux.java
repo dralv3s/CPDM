@@ -66,9 +66,9 @@ public class FuncAux extends AppCompatActivity {
         return sharedPref.getString(key, value);
     }
 
-    public Date formatDateTime(String timeToFormat) {
+    public Date FormatDateTime(String timeToFormat) {
         String timeFormated = timeToFormat.replace("/", "-");
-        String finalDateTime = "";
+
         SimpleDateFormat iso8601Format = new SimpleDateFormat("dd-MM-yyyy");
         Date date = null;
         if (timeFormated != null) {

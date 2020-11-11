@@ -18,7 +18,6 @@ import com.drdev.cpdm2s2020.Service.DataBaseHelper;
 import com.drdev.cpdm2s2020.Service.FuncAux;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.ads.MobileAds;
@@ -97,7 +96,7 @@ public class HomeActivity extends AppCompatActivity {
 
         db = new DataBaseHelper(getApplicationContext());
 
-        tarefas = db.GetTarefasList();
+        tarefas = db.GetTarefas();
 
         Integer tarefasTotal = tarefas.size();
 
@@ -108,7 +107,7 @@ public class HomeActivity extends AppCompatActivity {
 
         for (TarefaModel tarefa:tarefas) {
 
-            if (Calendar.getInstance().getTime().compareTo(func.formatDateTime(tarefa.DataEntrega)) >= 0){
+            if (Calendar.getInstance().getTime().compareTo(func.FormatDateTime(tarefa.DataEntrega)) >= 0){
                 tarefasAtraso ++;
             }else{
                 tarefasEmDia ++;

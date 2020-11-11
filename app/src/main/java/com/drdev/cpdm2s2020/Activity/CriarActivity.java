@@ -2,7 +2,6 @@ package com.drdev.cpdm2s2020.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
-
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -18,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.Toast;
+import com.drdev.cpdm2s2020.Model.NotificacaoModel;
 import com.drdev.cpdm2s2020.Model.TarefaModel;
 import com.drdev.cpdm2s2020.R;
 import com.drdev.cpdm2s2020.Service.DataBaseHelper;
@@ -27,7 +27,9 @@ import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 
 public class CriarActivity extends AppCompatActivity {
@@ -131,7 +133,7 @@ public class CriarActivity extends AppCompatActivity {
         dataEntrega.getEditText().setText(tarefa.DataEntrega);
 
         if (!tarefa.Notificar.equals("")){
-            String[] arr = tarefa.Notificar.split("\\|", tarefa.Notificar.length() -2);
+            String[] arr = SplitNotificacao(tarefa.Notificar);
             switchNotificar.setChecked(true);
             textInputLayoutFrequencia.getEditText().setText(arr[0]);
             spinnerNotificacao.setSelection(Integer.parseInt(arr[1]));
@@ -140,6 +142,10 @@ public class CriarActivity extends AppCompatActivity {
                 spinnerNotificacaoRepetir.setSelection(Integer.parseInt(arr[1]));
             }
         }
+    }
+
+    private String[] SplitNotificacao(String str){
+        return str.split("\\|", str.length() -2);
     }
 
     private int GetAction() {
@@ -352,7 +358,11 @@ public class CriarActivity extends AppCompatActivity {
         model.IconeTarefa = iconeTarefaSelected;
         model.Notificar = BuildNotificacao();
 
+        // TODO Modificar para devolver o ID da tarefa inserida
         boolean success = dbHelper.SalvarTarefa(model);
+
+        //TODO Colocar chamada para criar notificacoes aqui
+        ArrayList<NotificacaoModel> list = SaveNotifications();
 
         if (success){
             HideKeyboard();
@@ -368,6 +378,91 @@ public class CriarActivity extends AppCompatActivity {
         }else{
             func.Toast("Não foi possivel incluir o registro", Toast.LENGTH_LONG);
         }
+    }
+
+    private ArrayList<NotificacaoModel>  SaveNotifications(){
+
+        ArrayList<NotificacaoModel> notificacoes = new ArrayList<NotificacaoModel>();
+        NotificacaoModel notificacao;
+
+        String[] arr = SplitNotificacao(model.Notificar);
+
+        Date dataEntregaAsDate = func.FormatDateTime(model.DataEntrega);
+
+        switch (arr[1]){
+            case "0":
+                notificacao = new NotificacaoModel();
+                notificacao.InicioNotificacao = dataEntregaAsDate;
+                notificacao.FimNotificacao = dataEntregaAsDate;
+                notificacao.InicioNotificacaoStr = model.DataEntrega;
+                notificacao.FimNotificacaoStr = model.DataEntrega;
+                notificacoes.add(notificacao);
+                break;
+
+            case "1":
+
+                if (arr[2] != null ){
+                    switch (arr[2]){
+                        case "0":
+                            Calendar c = Calendar.getInstance();
+                            Date currentTime = c.getTime();
+
+                            c.setTime(dataEntregaAsDate);
+                            c.add(Calendar.DAY_OF_MONTH, - Integer.parseInt(arr[0]));
+
+                            Date ultimaNotificacao = c.getTime();
+
+                            long diff = ultimaNotificacao.getTime() - currentTime.getTime();
+
+                           if (diff >= 7){
+
+                               int qtdNotificacao = (int) diff / 7;
+
+
+                               for (int i = 0; i < qtdNotificacao; i++){
+                                   notificacao = new NotificacaoModel();
+
+                                   //c.setTime(ultimaNotificacao.getTime());
+
+                                   notificacao.InicioNotificacao = ultimaNotificacao;
+                                   notificacao.FimNotificacao = dataEntregaAsDate;
+                                   notificacao.InicioNotificacaoStr = model.DataEntrega;
+                                   notificacao.FimNotificacaoStr = model.DataEntrega;
+                                   notificacoes.add(notificacao);
+
+                               }
+                           }
+
+                            //TimeUnit.convert(diff, TimeUnit.MILLISECONDS);
+
+
+
+
+                                    String myFormat = "dd/MM/yyyy";
+                            SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
+                        sdf.format(myCalendar.getTime());
+
+                            //Calcula se é possivel encaixar ao menos uma semana para coincidir com a data ajustada de ultimo alarme(data de entrega - os dias digitados na frequencia)
+                            //Caso sim calcula as data e gera a lista
+                            break;
+                        case "1":
+                            //1 Registro para cada dia restante de prazo
+                            break;
+                        case "2":
+                            //1 Registro para cada dia restante de prazo + 1 registro para cada hora do dia dentro dos limites de notificação que será ajustado no setup
+                            break;
+
+                        default:
+                            break;
+                    }
+                }
+
+                break;
+
+            default:
+                break;
+        }
+        return notificacoes;
     }
 
 //    @Override

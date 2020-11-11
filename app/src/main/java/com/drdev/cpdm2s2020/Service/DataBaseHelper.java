@@ -4,13 +4,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.drdev.cpdm2s2020.Model.NotificacaoModel;
 import com.drdev.cpdm2s2020.Model.TarefaModel;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
     public static final String TBL_TAREFAS = "TBL_TAREFAS";
-    public static final String COLUMN_IDTAREFA = "IdTarefa";
+    public static final String COLUMN_ID_TAREFA = "IdTarefa";
     public static final String COLUMN_TITULO_TAREFA = "TituloTarefa";
     public static final String COLUMN_DESCRICAO_TAREFA = "DescricaoTarefa";
     public static final String COLUMN_ALIAS_TAREFA= "AliasTarefa";
@@ -19,6 +22,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public static final String COLUMN_VALOR_NOTA = "ValorNota";
     public static final String COLUMN_ICONE_TAREFA = "IconeTarefa";
     public static final String COLUMN_FL_STATUS = "FlStatus";
+    public static final String TBL_NOTIFICACOES = "TBL_NOTIFICACOES";
+    public static final String COLUMN_ID_NOTIFICACAO = "IdNotificacao";
+    public static final String COLUMN_INICIO_NOTIFICACAO = "InicioNotificacao";
+    public static final String COLUMN_FIM_NOTIFICACAO = "FimNotificacao";
+
 
     private StringBuilder sb;
 
@@ -31,7 +39,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         sb.append("CREATE TABLE " + TBL_TAREFAS + " (");
-        sb.append(COLUMN_IDTAREFA + " INTEGER NOT NULL, ");
+        sb.append(COLUMN_ID_TAREFA + " INTEGER NOT NULL, ");
         sb.append(COLUMN_TITULO_TAREFA + " TEXT NOT NULL, ");
         sb.append(COLUMN_DESCRICAO_TAREFA + " TEXT NOT NULL, ");
         sb.append(COLUMN_ALIAS_TAREFA + " TEXT, ");
@@ -40,10 +48,73 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         sb.append(COLUMN_VALOR_NOTA + " NUMERIC, ");
         sb.append(COLUMN_ICONE_TAREFA + " INTEGER, ");
         sb.append(COLUMN_FL_STATUS + " INTEGER, ");
-        sb.append("PRIMARY KEY(" + COLUMN_IDTAREFA + " AUTOINCREMENT) ");
+        sb.append("PRIMARY KEY(" + COLUMN_ID_TAREFA + " AUTOINCREMENT) ");
         sb.append(");");
 
         db.execSQL(sb.toString());
+        sb.delete(0, sb.length());
+
+        sb.append("CREATE TABLE " + TBL_NOTIFICACOES + " (");
+        sb.append(COLUMN_ID_NOTIFICACAO + " INTEGER NOT NULL, ");
+        sb.append(COLUMN_ID_TAREFA + " INTEGER NOT NULL, ");
+        sb.append(COLUMN_INICIO_NOTIFICACAO + " TEXT NOT NULL, ");
+        sb.append(COLUMN_FIM_NOTIFICACAO + " TEXT NOT NULL, ");
+        sb.append(COLUMN_FL_STATUS + " INTEGER, ");
+        sb.append("PRIMARY KEY(" + COLUMN_ID_NOTIFICACAO + " AUTOINCREMENT) ");
+        sb.append(");");
+
+        db.execSQL(sb.toString());
+    }
+
+    public boolean SalvarNotificacao (NotificacaoModel model){
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put(COLUMN_ID_TAREFA, model.IdTarefa);
+        cv.put(COLUMN_INICIO_NOTIFICACAO, model.InicioNotificacaoStr);
+        cv.put(COLUMN_FIM_NOTIFICACAO, model.FimNotificacaoStr);
+        cv.put(COLUMN_FL_STATUS, model.FlStatus);
+        long retorno = db.insert(TBL_NOTIFICACOES, null, cv);
+        db.close();
+        return retorno != -1;
+    }
+
+    public ArrayList<NotificacaoModel> GetNotificacoes() {
+        ArrayList<NotificacaoModel> returnList = new ArrayList<NotificacaoModel>();
+        NotificacaoModel model;
+        String query = "SELECT N." + COLUMN_ID_NOTIFICACAO +
+                            ", N." + COLUMN_ID_TAREFA +
+                            ", T." + COLUMN_ALIAS_TAREFA +
+                            ", T." + COLUMN_DESCRICAO_TAREFA +
+                            ", T." + COLUMN_TITULO_TAREFA +
+                            ", N." + COLUMN_INICIO_NOTIFICACAO +
+                            ", N." + COLUMN_FIM_NOTIFICACAO +
+                            ", N." + COLUMN_FL_STATUS +
+                            " FROM " + TBL_NOTIFICACOES + " N" +
+                            " JOIN " + TBL_TAREFAS + " T ON N." + COLUMN_ID_TAREFA + " = T." + COLUMN_ID_TAREFA +
+                            " WHERE " + COLUMN_FL_STATUS + " = 1 ;";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()){
+            do {
+                model = new NotificacaoModel();
+                model.IdNotificacao = cursor.getInt(0);
+                model.IdTarefa = cursor.getInt (1);
+                model.NomeTarefa = cursor.getString(2);
+                model.DescricaoNotificacao = cursor.getString(3);
+                model.TituloNotificacao = cursor.getString(4);
+                model.InicioNotificacaoStr = cursor.getString(5);
+                model.FimNotificacaoStr = cursor.getString(6);
+                model.FlStatus = cursor.getInt(7);
+                returnList.add(model);
+            }
+            while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return returnList;
     }
 
     @Override
@@ -67,7 +138,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         return retorno != -1;
     }
 
-    public ArrayList<TarefaModel> GetTarefasList() {
+    public ArrayList<TarefaModel> GetTarefas() {
         ArrayList<TarefaModel> returnList = new ArrayList<TarefaModel>();
         TarefaModel model;
         String query = "SELECT * FROM " + TBL_TAREFAS;
@@ -97,7 +168,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     public TarefaModel GetTarefa(int IdTarefa) {
         TarefaModel model = new TarefaModel();
-        String query = "SELECT * FROM " + TBL_TAREFAS + " WHERE " + COLUMN_IDTAREFA + " = " + IdTarefa;
+        String query = "SELECT * FROM " + TBL_TAREFAS + " WHERE " + COLUMN_ID_TAREFA + " = " + IdTarefa;
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 

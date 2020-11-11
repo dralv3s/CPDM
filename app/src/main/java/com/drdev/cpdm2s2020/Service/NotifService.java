@@ -23,7 +23,7 @@ public class NotifService {
 
         DataBaseHelper dataBaseHelper = new DataBaseHelper(context);
 
-        List<TarefaModel> listTarefas = dataBaseHelper.GetTarefasList();
+        List<TarefaModel> listTarefas = dataBaseHelper.GetTarefas();
 
         listTarefas.sort(new Comparator<TarefaModel>() {
             @Override

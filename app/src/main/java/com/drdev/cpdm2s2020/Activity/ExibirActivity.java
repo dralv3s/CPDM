@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
+
 import com.drdev.cpdm2s2020.Model.TarefaModel;
 import com.drdev.cpdm2s2020.R;
 import com.drdev.cpdm2s2020.Service.DataBaseHelper;
@@ -42,7 +42,7 @@ public class ExibirActivity extends AppCompatActivity implements  RecyclerAdapte
     }
 
     private void GetData() {
-        tarefas = db.GetTarefasList();
+        tarefas = db.GetTarefas();
     }
 
     private void SetRecyclerView() {

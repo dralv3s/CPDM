@@ -184,8 +184,8 @@ public class FirstActivity extends AppCompatActivity {
 
     private void SignUpEmail(){
 
-        usuario.Login = emailText.getEditText().getText().toString();
-        usuario.Senha = passwordText.getEditText().getText().toString();
+        usuario.Login = emailText.getEditText().getText().toString().trim();
+        usuario.Senha = passwordText.getEditText().getText().toString().trim();
 
         if (!usuario.Login.matches("")){
             if (!usuario.Senha.matches("")){
@@ -209,8 +209,10 @@ public class FirstActivity extends AppCompatActivity {
                             func.SaveUserPrefs(getString(R.string.IdTokenGoogle), user.getUid());
                             startActivity(new Intent(FirstActivity.this, HomeActivity.class));
                             finish();
-                        }else{
-                            func.Toast("Não foi possivel registrar o usuario, verifique a sua conexão e tente novamente.",0);
+                        }
+                        else{
+                            //TODO criar controle de exceptions
+                            func.Toast(task.getException().getMessage(),0);
                         }
                     }
                 });

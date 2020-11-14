@@ -38,7 +38,7 @@ public class HomeActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
-    private  GoogleSignInOptions gso;
+    private GoogleSignInOptions gso;
     private DataBaseHelper db;
 
     private TextView sairText;
@@ -154,6 +154,14 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        sairText = findViewById(R.id.SairTxt);
+        sairText.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+              LogOut();
+            }
+        });
 
         visualisarCardView = findViewById(R.id.cardViewVisualizar);
         visualisarCardView.setOnClickListener(new View.OnClickListener() {
@@ -191,22 +199,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view)
             {
-//               // startActivity(new Intent(HomeActivity.this, SetupActivity.class));
-//                notification.setSmallIcon(R.mipmap.ic_launcher_round)
-//                            //.setTicker("Me chupa no ticker")
-//                            .setContentTitle("Me chupa no titulo")
-//                            .setContentText("Me chupa conteudo");
-//                            //.setWhen(System.currentTimeMillis() + 2000);
-//
-//                Intent intent = new Intent(HomeActivity.this, HomeActivity.class);
-//                PendingIntent pendingIntent = PendingIntent.getActivity(HomeActivity.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-//                notification.setContentIntent(pendingIntent);
-//
-//                NotificationManager nm = (NotificationManager)getSystemService(NOTIFICATION_SERVICE);
-//
-//                nm.notify(notficationId, notification.build());
                 addNotification();
-
             }
         });
     }

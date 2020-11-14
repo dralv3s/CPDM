@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.drdev.cpdm2s2020.Model.NotificacaoModel;
 import com.drdev.cpdm2s2020.Model.TarefaModel;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class DataBaseHelper extends SQLiteOpenHelper {
 
@@ -66,6 +65,11 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.execSQL(sb.toString());
     }
 
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
     public boolean SalvarNotificacao (NotificacaoModel model){
 
         SQLiteDatabase db = this.getWritableDatabase();
@@ -115,11 +119,6 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         cursor.close();
         db.close();
         return returnList;
-    }
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
     }
 
     public boolean SalvarTarefa(TarefaModel model) {

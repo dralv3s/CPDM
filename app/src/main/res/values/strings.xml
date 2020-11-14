@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">CPDM</string>
+    <string name="app_name">Task Manager</string>
     <string name="navBarTitle">navBarTitle</string>
     <string name="requestId">124496619936-ie3g2e4lr872niad1s6mvh62710v6gvt.apps.googleusercontent.com</string>
     <string name="RC_SIGN_IN">9001</string>
@@ -8,7 +8,6 @@
     <string name="BemVindo">Bem-Vindo</string>
     <string name="IdTokenGoogle">IdTokenGoogle</string>
     <string name="IdTokenFirebase">IdTokenFirebase</string>
-
     <string name="content_description_EmailLogin">Email</string>
     <string name="content_description_SenhaLogin">Senha</string>
     <string name="contentAppLoginBackGround">contentAppLoginBackGround</string>
@@ -32,7 +31,6 @@
     <string name="SairTxtContentDescription">SAIRTXT</string>
     <string name="imageViewTarefaContentDescription">imageViewTarefa</string>
     <string name="visRowImageViewContentDescription">visRowImageViewContentDescription</string>
-
     <string name="content_description_TituloTarefa">Titulo</string>
     <string name="content_description_AliasTarefa">Apelido</string>
     <string name="content_description_DescricaoTarefa">Descrição</string>
@@ -43,10 +41,9 @@
     <string name="content_description_Button_Salvar_Tarefa">SALVAR</string>
     <string name="ButtonSalvarTarefaText">SALVAR</string>
     <string name="ButtonUpdateTarefaText">ATUALIZAR</string>
-
     <string name="Action">Action</string>
     <string name="IdTarefa">IdTarefa</string>
- 
+
     <string-array name="iconeArr">
         <item>Prova</item>
         <item>Trabalho</item>

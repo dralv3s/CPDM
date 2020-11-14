@@ -4,17 +4,12 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/taskmanagericon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/taskmanagericon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!-- Sample AdMob App ID: ca-app-pub-3940256099942544~3347511713 -->
-        <!--
-                app = ca-app-pub-1406951515203568~6182640131
-                add = ca-app-pub-1406951515203568/1281667246
-        -->
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-1406951515203568~6182640131"/>

@@ -245,8 +245,6 @@ public class CriarActivity extends AppCompatActivity {
                 cardViewNotificar.setVisibility(isChecked ? View.VISIBLE : View.GONE );
             }
         });
-
-
     }
 
     DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
@@ -361,8 +359,7 @@ public class CriarActivity extends AppCompatActivity {
         // TODO Modificar para devolver o ID da tarefa inserida
         boolean success = dbHelper.SalvarTarefa(model);
 
-        //TODO Colocar chamada para criar notificacoes aqui
-        ArrayList<NotificacaoModel> list = SaveNotifications();
+        SaveNotifications();
 
         if (success){
             HideKeyboard();
@@ -422,7 +419,7 @@ public class CriarActivity extends AppCompatActivity {
                                for (int i = 0; i < qtdNotificacao; i++){
                                    notificacao = new NotificacaoModel();
 
-                                   //c.setTime(ultimaNotificacao.getTime());
+
 
                                    notificacao.InicioNotificacao = ultimaNotificacao;
                                    notificacao.FimNotificacao = dataEntregaAsDate;
@@ -464,12 +461,6 @@ public class CriarActivity extends AppCompatActivity {
         }
         return notificacoes;
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        //zfinish();
-//
-//    }
 
     private void HideKeyboard(){
         InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);

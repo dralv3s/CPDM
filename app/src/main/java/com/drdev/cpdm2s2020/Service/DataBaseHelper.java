@@ -140,7 +140,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public ArrayList<TarefaModel> GetTarefas() {
         ArrayList<TarefaModel> returnList = new ArrayList<TarefaModel>();
         TarefaModel model;
-        String query = "SELECT * FROM " + TBL_TAREFAS;
+        String query = "SELECT * FROM " + TBL_TAREFAS + " WHERE " + COLUMN_FL_STATUS + " = 1";
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
 
@@ -205,7 +205,7 @@ public class DataBaseHelper extends SQLiteOpenHelper {
     public boolean ExcluirTarefa(TarefaModel model) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put(COLUMN_FL_STATUS, 1);
+        cv.put(COLUMN_FL_STATUS, 0);
         long retorno = db.update(TBL_TAREFAS, cv, "IdTarefa = " + model.IdTarefa, null);
         db.close();
         return retorno != -1;

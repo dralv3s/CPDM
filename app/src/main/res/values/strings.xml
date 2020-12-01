@@ -43,6 +43,7 @@
     <string name="ButtonUpdateTarefaText">ATUALIZAR</string>
     <string name="Action">Action</string>
     <string name="IdTarefa">IdTarefa</string>
+    <string name="labelDeleteSnackBar">Registro deletado com sucesso</string>
 
     <string-array name="iconeArr">
         <item>Prova</item>
